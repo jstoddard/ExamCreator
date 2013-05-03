@@ -1,0 +1,91 @@
+﻿<Window x:Class="ExamCreator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Amateur Radio Practice Exam Creator" Height="500" Width="640
+        ">
+    <DockPanel Width="Auto">
+        <Menu IsMainMenu="True" DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem x:Name="NewMenuItem" Header="_New" Click="NewMenuItem_Click" />
+                <MenuItem x:Name="OpenMenuItem" Header="_Open" Click="OpenMenuItem_Click" />
+                <MenuItem x:Name ="SaveMenuItem" Header="_Save" Click="SaveMenuItem_Click" />
+                <Separator />
+                <MenuItem x:Name="ExitMenuItem" Header="E_xit" Click="ExitMenuItem_Click" />
+            </MenuItem>
+        </Menu>
+        <Grid Name="ExamGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Exam Section -->
+            <Label Content="Exam Section" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" />
+            <ScrollViewer Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+                <ListBox Name="ExamSectionListBox" SelectionChanged="ExamSectionListBox_SelectionChanged" />
+            </ScrollViewer>
+            <Label Content="Description:" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Bottom" />
+            <Button Name="ExamSectionDelete" Content="-" Grid.Column="2" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="20" Margin="20 0" Click="ExamSectionDelete_Click" />
+            <Button Name="ExamSectionCreate" Content="+" Grid.Column="2" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="20" Click="ExamSectionCreate_Click" />
+            <TextBox Name="ExamSectionDescription" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Margin="0 0 50 0" KeyDown="ExamSectionDescription_KeyDown" />
+            <Button Name="ExamSectionSave" Content="Save" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" Width="50" Click="ExamSectionSave_Click" />
+
+            <!-- Question Group -->
+            <Label Content="Question Group" FontWeight="Bold" Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="3" />
+            <ScrollViewer Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="3">
+                <ListBox Name="QuestionGroupListBox" SelectionChanged="QuestionGroupListBox_SelectionChanged" />
+            </ScrollViewer>
+            <Label Content="Description:" Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Bottom" />
+            <Button Name="QuestionGroupDelete" Content="-" Grid.Column="5" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="20" Margin="20 0" Click="QuestionGroupDelete_Click" />
+            <Button Name="QuestionGroupCreate" Content="+" Grid.Column="5" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Right" Width="20" Click="QuestionGroupCreate_Click" />
+            <TextBox Name="QuestionGroupDescription" Grid.Column="3" Grid.Row="3" Grid.ColumnSpan="3" Margin="0 0 50 0" KeyDown="QuestionGroupDescription_KeyDown" />
+            <Button Name="QuestionGroupSave" Content="Save" Grid.Column="6" Grid.Row="3" HorizontalAlignment="Right" Width="50" Click="QuestionGroupSave_Click" />
+
+            <!-- Questions -->
+            <Label Content="Questions:" FontWeight="Bold" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="2" />
+            <ScrollViewer Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" Grid.RowSpan="2">
+                <ListBox Name="QuestionsListBox" SelectionChanged="QuestionsListBox_SelectionChanged" />
+            </ScrollViewer>
+            <Button Name="QuestionDelete" Content="-" Grid.Column="1" Grid.Row="7" VerticalAlignment="Top" HorizontalAlignment="Right" Width="20" Margin="20 0" Click="QuestionDelete_Click" />
+            <Button Name="QuestionCreate" Content="+" Grid.Column="1" Grid.Row="7" VerticalAlignment="Top" HorizontalAlignment="Right" Width="20" Click="QuestionCreate_Click" />
+
+            <!-- Question Details -->
+            <Label Content="Question Details:" FontWeight="Bold" Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="2" />
+            <StackPanel Name="QuestionDetailsStackPanel" Grid.Column="2" Grid.Row="5" Grid.ColumnSpan="2" Grid.RowSpan="3">
+                <Label Content="Identifier:" />
+                <TextBox Name="QuestionIdentifier" KeyDown="Question_KeyDown" />
+                <Label Content="Question:" />
+                <TextBox Name="Question" KeyDown="Question_KeyDown" />
+                <Label Content="Answer:" />
+                <TextBox Name="Answer" KeyDown="Question_KeyDown" />
+                <Label Content="Image:" />
+                <TextBox Name="Image" KeyDown="Question_KeyDown" />
+                <Button Name="QuestionSave" Content="Save" Width="50"  HorizontalAlignment="Right" Click="QuestionSave_Click" />
+            </StackPanel>
+
+            <!-- Distractors -->
+            <Label Content="Distractors:" FontWeight="Bold" Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="2" />
+            <ScrollViewer Grid.Column="4" Grid.Row="5" Grid.ColumnSpan="2">
+                <ListBox Name="DistractorsListBox" SelectionChanged="DistractorsListBox_SelectionChanged" />
+            </ScrollViewer>
+            <Button Name="DistractorDelete" Content="-" Grid.Column="5" Grid.Row="6" VerticalAlignment="Top" HorizontalAlignment="Right" Width="20" Margin="20 0" Click="DistractorDelete_Click" />
+            <Button Name="DistractorCreate" Content="+" Grid.Column="5" Grid.Row="6" VerticalAlignment="Top" HorizontalAlignment="Right" Width="20" Click="DistractorCreate_Click" />
+            <TextBox Name="DistractorTextBox" Grid.Column="4" Grid.Row="7" Grid.ColumnSpan="2" Margin="0 0 50 0" KeyDown="DistractorTextBox_KeyDown" />
+            <Button Name="DistractorSave" Content="Save" Grid.Column="5" Grid.Row="7" HorizontalAlignment="Right" Width="50" Click="DistractorSave_Click" />
+        </Grid>
+    </DockPanel>
+</Window>
