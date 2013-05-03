@@ -1,4 +1,6 @@
-Amateur Radio Practice Exam Creator
+Amateur (Ham) Radio Practice Exam Creator
+
+Jeremiah Stoddard - AG6HC <ag6hc@arrl.net>
 
 This is a simple editor that creates and edits XML files for multiple choice
 examinations. It was created particularly for touching up XML versions of the
